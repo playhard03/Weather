@@ -18,13 +18,16 @@ class WeaterTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
     }
     @IBAction func searchButton(_ sender: Any) {
+        
+    }
+    
+    @IBAction func refreshButton(_ sender: Any) {
         tableView.reloadData()
     }
     
-
 }
 
 extension WeaterTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -45,7 +48,7 @@ extension WeaterTableViewController: UITableViewDelegate, UITableViewDataSource 
         }
         return cell
     }
-
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {return }
@@ -59,6 +62,8 @@ extension WeaterTableViewController: UITableViewDelegate, UITableViewDataSource 
                     vc.cityName.text = "\(weatherSource?.location?.name ?? " ")"
                     vc.pressureLabel.text = "Давление: \(weatherSource?.current?.pressure_mb ?? 0.0) мм/рт"
                     vc.windSpeed.text = "Скорость ветра: \(weatherSource?.current?.wind_kph ?? 0.0) км/ч"
+                    vc.localTimeLabe.text = "Местное время: \(weatherSource?.location?.localtime ?? "")"
+                    vc.feelsLikeLabel.text = "Ощущается как: \(Int(weatherSource?.current?.feelslike_c ?? 0.0))"
                 }
             }
         }
@@ -66,3 +71,4 @@ extension WeaterTableViewController: UITableViewDelegate, UITableViewDataSource 
     
     
 }
+

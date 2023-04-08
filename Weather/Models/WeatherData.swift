@@ -9,6 +9,7 @@ struct Current: Codable{
     var temp_c : Double?
     var wind_kph : Double?
     var pressure_mb : Double?
+    var feelslike_c: Double?
 }
 struct Condition: Codable{
     var icon : String?
@@ -17,4 +18,5 @@ struct Condition: Codable{
 class Location: Codable{
     var name : String?
     var country : String?
+    var localtime: String?
 }
